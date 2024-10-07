@@ -30,7 +30,7 @@ jobs:
         with:
           image-ref: 'tokle.dev/juice-shop:${{ github.sha }}'
           scan-type: image
-          format: 'table'
+          format: 'github'
           severity: 'CRITICAL,HIGH'
           scanners: 'vuln,misconfig,secret'
 
@@ -48,7 +48,7 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'table'
+          format: 'github'
           severity: 'CRITICAL'
           scanners: 'vuln,misconfig,secret'
 
@@ -65,8 +65,8 @@ jobs:
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8
         with:
-          scan-type: 'misconfig'
+          scan-type: 'config'
           ignore-unfixed: true
-          format: 'table'
+          format: 'github'
           severity: 'CRITICAL'
 
