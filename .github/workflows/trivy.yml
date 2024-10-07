@@ -31,10 +31,12 @@ jobs:
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8
         with:
           image-ref: 'tokle.dev/juice-shop:${{ github.sha }}'
+          scan-type: image
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-image-results.sarif'
           severity: 'CRITICAL,HIGH'
+          scanners: 'vuln,config,secret'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
@@ -59,6 +61,7 @@ jobs:
           format: 'sarif'
           output: 'trivy-fs-results.sarif'
           severity: 'HIGH,CRITICAL'
+          scanners: 'vuln,config,secret'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
