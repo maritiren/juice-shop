@@ -95,7 +95,7 @@ jobs:
         with:
           image-ref: 'tokle.dev/juice-shop:${{ github.sha }}'
           scan-type: image
-          format: 'github'
+          format: 'table'
           severity: 'CRITICAL,HIGH'
           scanners: 'vuln,misconfig,secret'
           cache-dir: .trivycache
@@ -125,7 +125,7 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'github'
+          format: 'table'
           severity: 'CRITICAL'
           scanners: 'vuln,misconfig,secret'
 
@@ -161,6 +161,6 @@ jobs:
         with:
           scan-type: 'config'
           ignore-unfixed: true
-          format: 'github'
+          format: 'table'
           severity: 'CRITICAL'
 
